@@ -14,13 +14,15 @@ namespace Chinook.Data.Entities
         [StringLength(120, ErrorMessage ="Name is limited to 120 characters")]
         public string Name { get; set; }
 
-
+<<<<<<< HEAD
         // Navigation properties
         // artist (parent) points to many albums (children)
         // collection of records
-
-
-
+=======
+        //Navigation properties
+        //Artist (parent) points to many albums (chlidren)
+        //collection of records
+>>>>>>> refs/remotes/dwelchnait/master
         public virtual ICollection<Album> Albums { get; set; }
     }
 }
