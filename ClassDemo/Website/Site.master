@@ -88,7 +88,7 @@
                     use a web.sitemap file and all menu items are coded
                     in site.--%>
                     <asp:Menu ID="navMenu" runat="server"
-                         BackColor="#000000" BorderColor="Red"
+                         BackColor="#222222" BorderColor="Red"
                          StaticMenuItemStyle-ForeColor="#999999"
                          StaticMenuItemStyle-Font-Size="Larger"
                          StaticMenuItemStyle-VerticalPadding="14px"
@@ -96,7 +96,9 @@
                          RenderingMode="List" Orientation="Horizontal"
                          DynamicMenuItemStyle-ForeColor="#999999"
                          DynamicMenuItemStyle-Font-Size="Larger"
-                         DynamicMenuStyle-BackColor="Black">
+                         DynamicMenuStyle-BackColor="#222222"
+                        DynamicMenuItemStyle-VerticalPadding="14px"
+                        DynamicMenuStyle-HorizontalPadding="10px" >
                         <Items>
                             <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
 
