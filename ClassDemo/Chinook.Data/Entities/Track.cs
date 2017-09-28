@@ -33,6 +33,6 @@ namespace Chinook.Data.Entities
         [Column(TypeName = "numeric")]
         public decimal UnitPrice { get; set; }
 
-    
+      
     }
 }
