@@ -35,8 +35,8 @@ namespace ChinookSystem.BLL
                                            select new AlbumDTO
                                            {
                                                title = gresults.Key.Title,
-                                               releaseyear = gresults.Key.ReleaseYear,
-                                               numberoftracks = gresults.Count(),
+                                               releaseYear = gresults.Key.ReleaseYear,
+                                               numberOfTracks = gresults.Count(),
                                                tracks = from z in gresults
                                                         select new TrackPOCO
                                                         {
