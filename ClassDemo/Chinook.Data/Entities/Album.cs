@@ -28,6 +28,6 @@ namespace Chinook.Data.Entities
         //singular relationship
         public virtual Artist Artist { get; set; }
         public virtual ICollection<Track> Tracks { get; set; }
-
+        public virtual ICollection<Track> Tracks { get; set; }
     }
 }
