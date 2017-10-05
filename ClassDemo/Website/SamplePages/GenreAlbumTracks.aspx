@@ -53,6 +53,17 @@
                                 </td>
                             </tr>
                         </ItemTemplate>
+                        <AlternatingItemTemplate>  
+                            <tr style="background-color:#eeeeee">
+                                <td>
+                                    <asp:Label ID="Label1" runat="server" Text="<%# Item.song %>" Width="600px"></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label2" runat="server" Text="<%# Item.length %>"></asp:Label>
+                                </td>
+                            </tr>
+
+                        </AlternatingItemTemplate>
                         <EmptyDataTemplate>
                             No data available
                         </EmptyDataTemplate>
