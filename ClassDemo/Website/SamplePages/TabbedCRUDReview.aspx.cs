@@ -39,7 +39,7 @@ public partial class SamplePages_TabbedCRUDReview : System.Web.UI.Page
         try
         {
             Album item = new Album();
-            
+
             item.Title = AlbumTitle.Text;
             item.ArtistId = int.Parse(ArtistList.SelectedValue);
             item.ReleaseYear = int.Parse(ReleaseYear.Text);
@@ -85,7 +85,7 @@ public partial class SamplePages_TabbedCRUDReview : System.Web.UI.Page
                     SearchResults.DataBind();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Message.Text = ex.Message;
             }

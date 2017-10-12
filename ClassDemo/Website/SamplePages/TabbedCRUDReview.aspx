@@ -21,36 +21,36 @@
                            Enter Album Name:
                             <asp:TextBox ID="SearchArgAlbum" runat="server"></asp:TextBox>
                             <asp:Button ID="Fetch" runat="server" Text="Fetch" /><br />
-                            <asp:GridView ID="SearchResults" runat="server" 
-                                AutoGenerateColumns="False" DataSourceID="SearchResultsODS" 
-                                AllowPaging="True" GridLines="None" 
-                                OnSelectedIndexChanged="SearchResults_SelectedIndexChanged"
-                                OnPageIndexChanging="SearchResults_PageIndexChanging" >
-                                <Columns>
-                                    <asp:TemplateField >
-                                        <ItemTemplate>
-                                            <asp:Label runat="server" Text='<%# Bind("AlbumId") %>' 
-                                                ID="AlbumID" Visible="false"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title"></asp:BoundField>
-                                    <asp:TemplateField >
-                                        <ItemTemplate>
-                                            <asp:DropDownList runat="server"
-                                                ID="ArtistList" 
-                                                DataSourceID="ArtistListODS" 
-                                                DataTextField="Name" 
-                                                DataValueField="ArtistId"
-                                                SelectedValue='<%# Bind("ArtistID") %>'>
-                                            </asp:DropDownList>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="ReleaseYear" HeaderText="ReleaseYear" SortExpression="ReleaseYear"></asp:BoundField>
-                                    <asp:BoundField DataField="ReleaseLabel" HeaderText="ReleaseLabel" SortExpression="ReleaseLabel"></asp:BoundField>
-                                    <asp:CommandField SelectText="View" ShowSelectButton="True"></asp:CommandField>
+                            <asp:gridview id="SearchResults" runat="server" 
+                                autogeneratecolumns="false" datasourceid="searchresultsods" 
+                                allowpaging="true" gridlines="none" 
+                                onselectedindexchanged="SearchResults_SelectedIndexChanged"
+                                onpageindexchanging="SearchResults_PageIndexChanging" >
+                                <columns>
+                                    <asp:templatefield >
+                                        <itemtemplate>
+                                            <asp:label runat="server" text='<%# Bind("albumid") %>' 
+                                                id="albumid" visible="false"></asp:label>
+                                        </itemtemplate>
+                                    </asp:templatefield>
+                                    <asp:boundfield datafield="title" headertext="title" sortexpression="title"></asp:boundfield>
+                                    <asp:templatefield >
+                                        <itemtemplate>
+                                            <asp:dropdownlist runat="server"
+                                                id="artistlist" 
+                                                datasourceid="artistlistods" 
+                                                datatextfield="name" 
+                                                datavaluefield="artistid"
+                                                selectedvalue='<%# Bind("artistid") %>'>
+                                            </asp:dropdownlist>
+                                        </itemtemplate>
+                                    </asp:templatefield>
+                                    <asp:boundfield datafield="releaseyear" headertext="releaseyear" sortexpression="releaseyear"></asp:boundfield>
+                                    <asp:boundfield datafield="releaselabel" headertext="releaselabel" sortexpression="releaselabel"></asp:boundfield>
+                                    <asp:commandfield selecttext="view" showselectbutton="true"></asp:commandfield>
 
-                                </Columns>
-                                <SelectedRowStyle BackColor="#99CCFF" />
+                                </columns>
+                                <selectedrowstyle backcolor="#99ccff" />
                             </asp:GridView>
                             <asp:ObjectDataSource ID="SearchResultsODS" runat="server" 
                                 OldValuesParameterFormatString="original_{0}" 
@@ -126,7 +126,165 @@
                 <div class="tab-pane fade" id="listviewcrud">
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
-                          
+                            <asp:ListView ID="ListViewCRUD" runat="server" DataSourceID="ListViewCRUDODS" InsertItemPosition="LastItem" DataKeyNames="AlbumId">
+                                <AlternatingItemTemplate>
+                                    <tr style="background-color: #FFF8DC;">
+                                        <td>
+                                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+                                        </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ArtistId") %>' runat="server" ID="ArtistIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Artist") %>' runat="server" ID="ArtistLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Tracks") %>' runat="server" ID="TracksLabel" /></td>
+                                    </tr>
+                                </AlternatingItemTemplate>
+                                <EditItemTemplate>
+                                    <tr style="background-color: #008A8C; color: #FFFFFF;">
+                                        <td>
+                                            <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
+                                            <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ArtistId") %>' runat="server" ID="ArtistIdTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Artist") %>' runat="server" ID="ArtistTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Tracks") %>' runat="server" ID="TracksTextBox" /></td>
+                                    </tr>
+                                </EditItemTemplate>
+                                <EmptyDataTemplate>
+                                    <table runat="server" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px;">
+                                        <tr>
+                                            <td>No data was returned.</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <InsertItemTemplate>
+                                    <tr style="">
+                                        <td>
+                                            <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
+                                            <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Title") %>' runat="server" ID="TitleTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ArtistId") %>' runat="server" ID="ArtistIdTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("ReleaseLabel") %>' runat="server" ID="ReleaseLabelTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Artist") %>' runat="server" ID="ArtistTextBox" /></td>
+                                        <td>
+                                            <asp:TextBox Text='<%# Bind("Tracks") %>' runat="server" ID="TracksTextBox" /></td>
+                                    </tr>
+                                </InsertItemTemplate>
+                                <ItemTemplate>
+                                    <tr style="background-color: #DCDCDC; color: #000000;">
+                                        <td>
+                                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+                                        </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ArtistId") %>' runat="server" ID="ArtistIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Artist") %>' runat="server" ID="ArtistLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Tracks") %>' runat="server" ID="TracksLabel" /></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <LayoutTemplate>
+                                    <table runat="server">
+                                        <tr runat="server">
+                                            <td runat="server">
+                                                <table runat="server" id="itemPlaceholderContainer" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Verdana, Arial, Helvetica, sans-serif;" border="1">
+                                                    <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
+                                                        <th runat="server"></th>
+                                                        <th runat="server">AlbumId</th>
+                                                        <th runat="server">Title</th>
+                                                        <th runat="server">ArtistId</th>
+                                                        <th runat="server">ReleaseYear</th>
+                                                        <th runat="server">ReleaseLabel</th>
+                                                        <th runat="server">Artist</th>
+                                                        <th runat="server">Tracks</th>
+                                                    </tr>
+                                                    <tr runat="server" id="itemPlaceholder"></tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr runat="server">
+                                            <td runat="server" style="text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
+                                                <asp:DataPager runat="server" ID="DataPager1">
+                                                    <Fields>
+                                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
+                                                        <asp:NumericPagerField></asp:NumericPagerField>
+                                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
+                                                    </Fields>
+                                                </asp:DataPager>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </LayoutTemplate>
+                                <SelectedItemTemplate>
+                                    <tr style="background-color: #008A8C; font-weight: bold; color: #FFFFFF;">
+                                        <td>
+                                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+                                        </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Title") %>' runat="server" ID="TitleLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ArtistId") %>' runat="server" ID="ArtistIdLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("ReleaseLabel") %>' runat="server" ID="ReleaseLabelLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Artist") %>' runat="server" ID="ArtistLabel" /></td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("Tracks") %>' runat="server" ID="TracksLabel" /></td>
+                                    </tr>
+                                </SelectedItemTemplate>
+                            </asp:ListView>
+                            <asp:ObjectDataSource ID="ListViewCRUDODS" runat="server"
+                                DataObjectTypeName="Chinook.Data.Entities.Album" 
+                                DeleteMethod="Albums_Delete"
+                                InsertMethod="Albums_Add"
+                                OldValuesParameterFormatString="original_{0}"
+                                SelectMethod="Albums_List"
+                                TypeName="ChinookSystem.BLL.AlbumController" 
+                                UpdateMethod="Albums_Update"></asp:ObjectDataSource>
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
