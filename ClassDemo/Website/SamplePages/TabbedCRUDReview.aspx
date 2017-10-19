@@ -2,12 +2,15 @@
     AutoEventWireup="true" CodeFile="TabbedCRUDReview.aspx.cs" 
     Inherits="SamplePages_TabbedCRUDReview" %>
 
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="row jumbotron">
         <h1>Tabbed CRUD Review</h1>
     </div>
-
+    <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
      <div class="row">
         <div class="col-md-12">
             <!-- Nav tabs -->
@@ -303,7 +306,11 @@
                                 SelectMethod="Albums_List"
                                 UpdateMethod="Albums_Update"
                                 OldValuesParameterFormatString="original_{0}" 
-                                TypeName="ChinookSystem.BLL.AlbumController">
+                                TypeName="ChinookSystem.BLL.AlbumController"
+                                OnDeleted="CheckForException"
+                                OnInserted="CheckForException"
+                                OnUpdated="CheckForException"
+                                OnSelected="CheckForException" >
                             </asp:ObjectDataSource>
                         </ContentTemplate>
                     </asp:UpdatePanel>
