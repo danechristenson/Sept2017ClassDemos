@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+﻿using Chinook.Data.Entities.Security;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Web;
 using System.Web.UI;
