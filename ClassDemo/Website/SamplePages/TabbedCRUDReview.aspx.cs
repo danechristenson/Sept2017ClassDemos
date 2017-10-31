@@ -134,4 +134,5 @@ public partial class SamplePages_TabbedCRUDReview : System.Web.UI.Page
     {
         MessageUserControl.HandleDataBoundException(e);
     }
+
 }
