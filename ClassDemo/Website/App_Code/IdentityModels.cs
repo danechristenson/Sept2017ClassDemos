@@ -3,6 +3,7 @@ using Microsoft.Owin.Security;
 using System.Web;
 using System;
 using Chinook.Data.Entities.Security;
+using ChinookSystem.BLL.Security;
 
 namespace Website
 {

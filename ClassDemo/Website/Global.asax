@@ -2,7 +2,7 @@
 <%@ Import Namespace="Website" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 <%@ Import Namespace="System.Web.Routing" %>
-
+<%@ Import Namespace="ChinookSystem.BLL.Security" %>
 <script runat="server">
 
     void Application_Start(object sender, EventArgs e)
