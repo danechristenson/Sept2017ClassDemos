@@ -68,7 +68,7 @@
                                         <%# Item.FirstName + " " + Item.LastName %>
                                     </div>
                                     <div class="col-sm-3">
-                                        <asp:Repeater ID="RoleUserReapter" runat="server"
+                                        <asp:Repeater ID="RoleUserRepeater" runat="server"
                                             DataSource="<%# Item.RoleMemberships%>"
                                             ItemType="System.String">
                                             <ItemTemplate>
@@ -89,19 +89,19 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <asp:TextBox ID="UserName" runat="server"
-                                            text='<%# BindItem.UserName %>' 
-                                            placeholder="User Name"></asp:TextBox>
+                                            text='<%# BindItem.UserName %>' >
+                                            </asp:TextBox>
                                     </div>
                                     <div class="col-sm-2">
                                         <asp:TextBox ID="UserEmail" runat="server"
-                                            text='<%# BindItem.Email %>' TextMode="Email" 
-                                            placeholder="User Email"></asp:TextBox>
+                                            text='<%# BindItem.Email %>' TextMode="Email" >
+                                            </asp:TextBox>
                                     </div>
                                     
                                     <div class="col-sm-3">
                                         <asp:TextBox ID="EmployeeID" runat="server"
                                             text='<%# BindItem.EmployeeId %>' TextMode="Number" 
-                                            placeholder="Employee ID" ></asp:TextBox>
+                                             ></asp:TextBox>
                                     </div>
                                     <div class="col-sm-3">
                                         <asp:CheckBoxList ID="RoleMemberships" runat="server"
@@ -181,8 +181,8 @@
                                        </div>
                                        <div class="col-sm-3">
                                            <asp:TextBox ID="RoleNameTextBox" runat="server"
-                                               Text="<%# BindItem.RoleName %>" 
-                                               placeholder="Role Name"></asp:TextBox>
+                                               Text="<%# BindItem.RoleName %>" >
+                                               </asp:TextBox>
                                        </div>
                                    </div>
                                </InsertItemTemplate>
