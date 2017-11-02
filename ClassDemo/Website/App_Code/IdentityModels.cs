@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Web;
 using System;
-using Chinook.Data.Entities.Security;
+using Website;
 using ChinookSystem.BLL.Security;
+using Chinook.Data.Entities.Security;
 
 namespace Website
 {
