@@ -25,7 +25,7 @@ namespace ChinookSystem.DAL
         public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
 
-        // generated code fo
+        // generated code
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Album>()
