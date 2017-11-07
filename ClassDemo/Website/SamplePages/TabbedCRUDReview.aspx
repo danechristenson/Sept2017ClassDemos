@@ -158,7 +158,7 @@
                                                  SelectedValue='<%# Eval("ArtistId") %>'
                                                  Enabled="false">
                                             </asp:DropDownList></td>
-                                        <td align="center">
+                                        <td>
                                             <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel"
                                                  Width="50px"/></td>
                                         <td>
@@ -184,7 +184,7 @@
                                                 DataValueField="ArtistId"
                                                  SelectedValue='<%# Bind("ArtistId") %>'>
                                             </asp:DropDownList></td>
-                                        <td align="center">
+                                        <td>
                                             <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox"
                                                  Width="50px"/></td>
                                         <td>
@@ -217,7 +217,7 @@
                                                 DataValueField="ArtistId"
                                                  SelectedValue='<%# Bind("ArtistId") %>'>
                                             </asp:DropDownList></td>
-                                        <td align="center">
+                                        <td>
                                             <asp:TextBox Text='<%# Bind("ReleaseYear") %>' runat="server" ID="ReleaseYearTextBox"
                                                  Width="50px"/></td>
                                         <td>
@@ -244,7 +244,7 @@
                                                  SelectedValue='<%# Eval("ArtistId") %>'
                                                  Enabled="false">
                                             </asp:DropDownList></td>
-                                        <td align="center">
+                                        <td>
                                             <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel"
                                                  Width="50px"/></td>
                                         <td>
@@ -302,7 +302,7 @@
                                                  SelectedValue='<%# Eval("ArtistId") %>'
                                                  Enabled="false">
                                             </asp:DropDownList></td>
-                                        <td align="center">
+                                        <td>
                                             <asp:Label Text='<%# Eval("ReleaseYear") %>' runat="server" ID="ReleaseYearLabel"
                                                  Width="50px"/></td>
                                         <td>

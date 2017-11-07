@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Chinook.Data.Entities.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel;
+
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #region Additional Namespaces
-using Chinook.Data.Entities.Security;
 using Chinook.Data.Entities;
 using Chinook.Data.POCOs;
 using ChinookSystem.DAL;
 using ChinookSystem.DAL.Security;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.ComponentModel;
 #endregion
 
 namespace ChinookSystem.BLL.Security
