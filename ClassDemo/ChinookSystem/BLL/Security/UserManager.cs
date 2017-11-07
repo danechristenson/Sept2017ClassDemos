@@ -1,20 +1,23 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-using Chinook.Data.Entities;
+#region Additional Namespaces
 using Chinook.Data.Entities.Security;
+using Chinook.Data.Entities;
 using Chinook.Data.POCOs;
-using ChinookSystem.BLL;
 using ChinookSystem.DAL;
 using ChinookSystem.DAL.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+#endregion
 
 namespace ChinookSystem.BLL.Security
 {
+    [DataObject]
     public class UserManager : UserManager<ApplicationUser>
     {
         #region Constants
@@ -160,6 +163,7 @@ namespace ChinookSystem.BLL.Security
             //return teh finalized new verified user name
             return verifiedUserName;
         }
+
         #region UserRole Adminstration
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<UserProfile> ListAllUsers()

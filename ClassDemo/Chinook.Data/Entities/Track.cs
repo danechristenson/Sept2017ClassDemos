@@ -17,8 +17,8 @@ namespace Chinook.Data.Entities
 
         public int TrackId { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
-        [StringLength(200, ErrorMessage = "No more than 200 characters")]
+        [Required(ErrorMessage ="Name is required")]
+        [StringLength(200,ErrorMessage ="Name is limited to 200 characters")]
         public string Name { get; set; }
 
         public int? AlbumId { get; set; }

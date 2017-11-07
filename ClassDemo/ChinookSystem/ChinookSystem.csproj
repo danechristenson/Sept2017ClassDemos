@@ -62,6 +62,7 @@
     <Compile Include="BLL\EmployeeController.cs" />
     <Compile Include="BLL\GenreController.cs" />
     <Compile Include="BLL\Security\RoleManager.cs" />
+    <Compile Include="BLL\Security\UserManager.cs" />
     <Compile Include="DAL\ChinookContext.cs" />
     <Compile Include="DAL\Security\ApplicationDbContext.cs" />
     <Compile Include="BLL\Security\UserManager.cs" />
