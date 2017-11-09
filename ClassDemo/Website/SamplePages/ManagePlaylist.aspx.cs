@@ -57,7 +57,7 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
 
     protected void MediaTypeFetch_Click(object sender, EventArgs e)
     {
-        TracksBy.Text = "Media";
+        TracksBy.Text = "MediaType";
         SearchArgID.Text = MediaTypeDDL.SelectedValue;
 
         TracksSelectionList.DataBind();

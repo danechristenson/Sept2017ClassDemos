@@ -17,21 +17,100 @@ namespace ChinookSystem.BLL
     [DataObject]
     public class TrackController
     {
-        [DataObjectMethod(DataObjectMethodType.Select,false)]
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<TrackList> List_TracksForPlaylistSelection(string tracksby, int argid)
         {
             using (var context = new ChinookContext())
             {
                 IEnumerable<TrackList> results = null;
 
-               //code to go here
+                //code to go here
+                // determine which lookup needs to be done : tracksby
+                switch (tracksby)
+                {
+                    case "Artist":
+                        {
+                            results = from x in context.Tracks
+                                      orderby x.Name
+                                      where x.Album.ArtistId == argid
+                                      select new TrackList
+                                      {
+                                          TrackID = x.TrackId,
+                                          Name = x.Name,
+                                          Title = x.Album.Title,
+                                          MediaName = x.MediaType.Name,
+                                          GenreName = x.Genre.Name,
+                                          Composer = x.Composer,
+                                          Milliseconds = x.Milliseconds,
+                                          Bytes = x.Bytes,
+                                          UnitPrice = x.UnitPrice
 
+                                      };
+                            break;
+                        }
+                    case "MediaType":
+                        {
+                            results = from x in context.Tracks
+                                      orderby x.Name
+                                      where x.MediaTypeId == argid
+                                      select new TrackList
+                                      {
+                                          TrackID = x.TrackId,
+                                          Name = x.Name,
+                                          Title = x.Album.Title,
+                                          MediaName = x.MediaType.Name,
+                                          GenreName = x.Genre.Name,
+                                          Composer = x.Composer,
+                                          Milliseconds = x.Milliseconds,
+                                          Bytes = x.Bytes,
+                                          UnitPrice = x.UnitPrice
+                                      };
+                            break;
+                        }
+                    case "Genre":
+                        {
+                            results = from x in context.Tracks
+                                      orderby x.Name
+                                      where x.GenreId == argid
+                                      select new TrackList
+                                      {
+                                          TrackID = x.TrackId,
+                                          Name = x.Name,
+                                          Title = x.Album.Title,
+                                          MediaName = x.MediaType.Name,
+                                          GenreName = x.Genre.Name,
+                                          Composer = x.Composer,
+                                          Milliseconds = x.Milliseconds,
+                                          Bytes = x.Bytes,
+                                          UnitPrice = x.UnitPrice
+                                      };
+                            break;
+                        }
+                    default:
+                        {
+                            results = from x in context.Tracks
+                                      orderby x.Name
+                                      select new TrackList
+                                      {
+                                          TrackID = x.TrackId,
+                                          Name = x.Name,
+                                          Title = x.Album.Title,
+                                          MediaName = x.MediaType.Name,
+                                          GenreName = x.Genre.Name,
+                                          Composer = x.Composer,
+                                          Milliseconds = x.Milliseconds,
+                                          Bytes = x.Bytes,
+                                          UnitPrice = x.UnitPrice
+                                      };
+                            break;
+                        }
+                }
 
 
                 return results.ToList();
             }
         }//eom
 
-       
+
     }//eoc
 }
