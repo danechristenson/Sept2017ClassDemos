@@ -48,21 +48,38 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
     protected void ArtistFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Artist";
+        SearchArgID.Text = ArtistDDL.SelectedValue;
+
+        //refresh the track list display
+        TracksSelectionList.DataBind();
     }
 
     protected void MediaTypeFetch_Click(object sender, EventArgs e)
     {
+        TracksBy.Text = "Media";
+        SearchArgID.Text = MediaTypeDDL.SelectedValue;
+
+        TracksSelectionList.DataBind();
         //code to go here
     }
 
     protected void GenreFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Genre";
+        SearchArgID.Text = GenreDDL.SelectedValue;
+
+        TracksSelectionList.DataBind();
     }
 
     protected void AlbumFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        TracksBy.Text = "Album";
+        SearchArgID.Text = AlbumDDL.SelectedValue;
+
+        TracksSelectionList.DataBind();
     }
 
     protected void PlayListFetch_Click(object sender, EventArgs e)
