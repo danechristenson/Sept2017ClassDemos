@@ -85,6 +85,31 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
     protected void PlayListFetch_Click(object sender, EventArgs e)
     {
         //code to go here
+        //standard query lookup
+        if (string.IsNullOrEmpty(PlaylistName.Text))
+        {
+            //able to display a message to the user via the MessageUserControl
+            MessageUserControl.ShowInfo("Warning", "Playlist Name is Required.");
+        }
+        else
+        {
+            //obtain the username from the security Identity class
+            string username = User.Identity.Name;
+
+            //the MessageUserControl has embedded in it code the Try/Catch logic
+            //you do not need to code your own try/catch
+            MessageUserControl.TryRun(() =>
+            {
+                //code to be run under the "watchful eyes" of the user control
+                // this is the try{your code} of the try/catch
+                PlaylistTracksController sysmgr = new PlaylistTracksController();
+                List<UserPlaylistTrack> info = sysmgr.List_TracksForPlaylist(PlaylistName.Text, username);
+
+                PlayList.DataSource = info;
+                PlayList.DataBind(); 
+            }, "", "Here is your current playlist");
+            
+        }
     }
 
     protected void TracksSelectionList_ItemCommand(object sender, 
