@@ -58,12 +58,65 @@ namespace ChinookSystem.BLL
 
             }
         }//eom
-        public void Add_TrackToPLaylist(string playlistname, string username, int trackid)
+        public List<UserPlaylistTrack> Add_TrackToPLaylist(string playlistname, string username, int trackid)
         {
             using (var context = new ChinookContext())
             {
                 //code to go here
-                
+                //Part One:
+                //
+                var exists =  (from x in context.Playlists
+                               where x.UserName.Equals(username)
+                               && x.Name.Equals(playlistname)
+                               select x).FirstOrDefault();
+
+                // initialize the tracknumber
+                int tracknumber = 0;
+                // I will need to create an instance of PlayListTrack
+                PlaylistTrack newtrack = null;
+
+                // determine if a PlayList "Parent" instances need to be created
+                if (exists == null)
+                {
+                    // this is a new playlist
+                    // create an instance of playlist to add to Playlist table
+                    exists = new Playlist();
+                    exists.Name = playlistname;
+                    exists.UserName = username;
+                    exists = context.Playlists.Add(exists);
+                    // at this time there is  no physical PKey
+                    // the psuedo pkey is handled by the HashSet
+                    tracknumber = 1;
+                }
+                else
+                {
+                    // playlist exists
+                    // I need ot generate the next track number
+                    tracknumber = exists.PlaylistTracks.Count() + 1;
+
+                    // validation: in our example a track can only exist once
+                    // on a particular playlist
+                    newtrack = exists.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackid);
+                    if (newtrack != null)
+                    {
+                        throw new Exception("Playlist already contains track");
+                    }
+                }
+
+                // Part Two: Add the PlaylistTrack instance
+                // use navigation to .Add the new track to PlaylistTrack
+                newtrack = new PlaylistTrack();
+                newtrack.TrackId = trackid;
+                newtrack.TrackNumber = tracknumber;
+
+                // NOTE: the pkey for PlaylistId may not yet exist
+                // using navigation one can let HashSet handle the PlaylistId pkey value
+                exists.PlaylistTracks.Add(newtrack);
+
+                // physically add all data to the database
+                // commit
+                context.SaveChanges();
+                return List_TracksForPlaylist(playlistname, username);
              
             }
         }//eom
