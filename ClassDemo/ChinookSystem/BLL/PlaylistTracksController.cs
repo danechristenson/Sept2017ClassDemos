@@ -21,10 +21,41 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-               
-                //code to go here
 
-                return null;
+                // what would happen if there is no match for the 
+                // incoming parameter value
+                // we need to ensure that the results have a valid value
+                // this value will the resolve of the query either a null ( not found_
+                // or an IEnumberable<T> collection
+                // to achieve a valid value encapsulate the query in a 
+                // .FirstOrDefault
+
+                var results = (from x in context.Playlists
+                               where x.UserName.Equals(username)
+                               && x.Name.Equals(playlistname)
+                               select x).FirstOrDefault();
+                if (results == null)
+                {
+                    return null;
+                }
+                else
+                {
+
+                    // now get the tracks
+                    var theTracks = from x in context.PlaylistTracks
+                                    where x.PlaylistId.Equals(results.PlaylistId)
+                                    orderby x.TrackNumber
+                                    select new UserPlaylistTrack
+                                    {
+                                        TrackID = x.TrackId,
+                                        TrackNumber = x.TrackNumber,
+                                        TrackName = x.Track.Name,
+                                        Milliseconds = x.Track.Milliseconds,
+                                        UnitPrice = x.Track.UnitPrice
+                                    };
+                    return theTracks.ToList();
+                }
+
             }
         }//eom
         public void Add_TrackToPLaylist(string playlistname, string username, int trackid)
