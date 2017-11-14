@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 #region Additional Namespaces
 using Chinook.Data.Entities;
+using Chinook.Data.POCOs;
 using ChinookSystem.DAL;
 using System.ComponentModel;  //expose methods for ODS wizard
 using Chinook.Data.POCOs;
