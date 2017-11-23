@@ -34,7 +34,7 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
         //PreRenderComplete occurs just after databinding page events
         //load a pointer to point to your DataPager control
         DataPager thePager = TracksSelectionList.FindControl("DataPager1") as DataPager;
-        if (thePager !=null)
+        if (thePager != null)
         {
             //this code will check the StartRowIndex to see if it is greater that the
             //total count of the collection
@@ -106,9 +106,9 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
                 List<UserPlaylistTrack> info = sysmgr.List_TracksForPlaylist(PlaylistName.Text, username);
 
                 PlayList.DataSource = info;
-                PlayList.DataBind(); 
+                PlayList.DataBind();
             }, "", "Here is your current playlist");
-            
+
         }
     }
 
@@ -166,7 +166,7 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
                 CheckBox playlistselection = null;
 
                 // traverse the GridView checking each row for a checked box
-                for(int i = 0; i < PlayList.Rows.Count; i++)
+                for (int i = 0; i < PlayList.Rows.Count; i++)
                 {
                     // playlistselection will point to the current
                     // checkbox of the current gridview row being
@@ -179,13 +179,13 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
                         rowsSelected++;
                     }
                 }
-                if(rowsSelected != 1)
+                if (rowsSelected != 1)
                 {
                     MessageUserControl.ShowInfo("Warning", "Please select only one track.");
-                } 
+                }
                 else
                 {
-                    if(tracknumber == 1)
+                    if (tracknumber == 1)
                     {
                         MessageUserControl.ShowInfo("Information", "Track cannot be moved up.");
                     }
@@ -269,11 +269,56 @@ public partial class SamplePages_ManagePlaylist : System.Web.UI.Page
             PlayList.DataSource = results;
             PlayList.DataBind();
         }, "Success", "Track has been moved.");
-       
+
 
     }
     protected void DeleteTrack_Click(object sender, EventArgs e)
     {
         //code to go here
+        MessageUserControl.TryRun(() =>
+        {
+            if (PlayList.Rows.Count == 0)
+            {
+                MessageUserControl.ShowInfo("Information", "You need to retreive a playlist before deleting.");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(PlaylistName.Text))
+                {
+                    MessageUserControl.ShowInfo("Information", "You need to supply the playlist name.");
+                }
+                else
+                {
+                    // collect the tracks to delete
+                    List<int> trackstodelete = new List<int>();
+                    int selectedrows = 0;
+                    CheckBox theBox = null;
+                    for (int i = 0; i < PlayList.Rows.Count; i++)
+                    {
+                        theBox = PlayList.Rows[i].FindControl("Selected") as CheckBox;
+                        if (theBox.Checked)
+                        {
+                            trackstodelete.Add(int.Parse((PlayList.Rows[i].FindControl("TrackId") as Label).Text));
+                            selectedrows++;
+                        }
+                    }
+                    if (selectedrows == 0)
+                    {
+                        MessageUserControl.ShowInfo("Information", "You need to select one or more tracks to remove.");
+                    }
+                    else
+                    {
+                        // BLL processing
+                        PlaylistTracksController sysmgr = new PlaylistTracksController();
+                        sysmgr.DeleteTracks(User.Identity.Name, PlaylistName.Text, trackstodelete);
+
+                        List<UserPlaylistTrack> info = sysmgr.List_TracksForPlaylist(PlaylistName.Text, User.Identity.Name);
+                        PlayList.DataSource = info;
+                        PlayList.DataBind();
+                    }
+                }
+            }
+
+        }, "Success", "Tracks Removed");
     }
 }
